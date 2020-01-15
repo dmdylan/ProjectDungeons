@@ -5,14 +5,17 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private PlayerController playerControls = null;
+    PlayerController playerControls;
 
     private void Awake() => playerControls = new PlayerController();
     private void OnEnable() => playerControls.Combat.Enable();
     private void OnDisable() => playerControls.Combat.Disable();
-    private void Update() => MovePlayer();
+    private void Update()
+    {
+      
+    }
 
-    private void MovePlayer()
+    public void OnMovement(InputAction.CallbackContext context)
     {
         var movementInput = playerControls.Combat.Movement.ReadValue<Vector2>();
         Debug.Log(movementInput);
@@ -22,8 +25,6 @@ public class PlayerMovement : MonoBehaviour
             z = movementInput.y
         };
 
-        Debug.Log(movement);
         transform.Translate(movement * 2 * Time.deltaTime);
-    }
-    
+    }   
 }
