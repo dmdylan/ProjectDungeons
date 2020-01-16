@@ -1,26 +1,22 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(Collider))]
+[RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
 {
-    //PlayerController playerControls;
-    Vector2 i_movement;
+    private Rigidbody rb;
+    private bool isAirborne = false;
+
+    Vector2 wasdInput;
+    Vector3 walkVelocity;
+
+    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float jumpForce = 250f;
+
     private void Awake()
     {
-        //playerControls = new PlayerController();
-    }
-
-    private void OnEnable()
-    {
-       // playerControls.Combat.Enable();
-    }
-
-    private void OnDisable()
-    {
-       // playerControls.Combat.Disable();
+        rb = GetComponent<Rigidbody>();
     }
 
     private void Update()
@@ -28,29 +24,54 @@ public class PlayerMovement : MonoBehaviour
         Move();
     }
 
+    private void OnJump(InputValue value)
+    {
+        if (value.isPressed && isAirborne == false)
+        {
+            Jump();
+        }
+    }
+
+    private void Jump()
+    {
+        rb.AddForce(Vector3.up * jumpForce);
+    }
+
+    #region Movement Logic
+    private void OnMovement(InputValue value)
+    {
+        wasdInput = value.Get<Vector2>();
+        ProcessInput();       
+    }
+    
+    private void ProcessInput()
+    {
+        //Reset movement velocity
+        walkVelocity = Vector3.zero;
+
+        //By default, the input is a float. Which makes the speed ramp up/down.
+        //Setting the input values to either 1/-1 fixes this making the movement crisp by starting and stopping instantly.
+        //Set vertical value
+        float vval = 0f;
+        if(wasdInput.y > 0f) { vval += 1f; }
+        else if (wasdInput.y <0) { vval -= 1f; }
+        //Set horizontal input value
+        float hval = 0f;
+        if(wasdInput.x > 0f) { hval += 1f; }
+        else if (wasdInput.x < 0f) { hval -= 1f; }
+
+        //Set vertical movement velocity
+        if(vval != 0) { walkVelocity += Vector3.forward * vval; }
+        //Set horizontal movement veloctiy
+        if(hval != 0) { walkVelocity += Vector3.right * hval; }      
+    }
+
     private void Move()
     {
-        Vector3 movement = new Vector3(i_movement.x, 0, i_movement.y) * 5 * Time.deltaTime;
+        if(wasdInput == Vector2.zero) { walkVelocity = Vector3.zero; }
+        Vector3 movement = new Vector3(walkVelocity.x, 0, walkVelocity.z).normalized * moveSpeed * Time.deltaTime;
         transform.Translate(movement);
-        Debug.Log(i_movement);
+        //transform.Translate(movement);
     }
-
-    private void OnMove(InputValue value)
-    {
-        i_movement = value.Get<Vector2>();
-        
-    }
-
-    public void OnMovement(InputAction.CallbackContext context)
-    {
-        //var movementInput = playerControls.Combat.Movement.ReadValue<Vector2>();
-        //Debug.Log(movementInput);
-        //var movement = new Vector3
-        //{
-        //    x = movementInput.x,
-        //    z = movementInput.y
-        //};
-        //
-        //transform.Translate(movement * 2 * Time.deltaTime);
-    }   
+    #endregion
 }

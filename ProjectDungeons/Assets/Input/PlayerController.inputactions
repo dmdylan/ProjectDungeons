@@ -28,6 +28,14 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "feaa04b9-b393-4bc5-9417-4e1a4f27b69b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -35,7 +43,7 @@
                     "name": "WASD",
                     "id": "72d3a6ea-a2a3-45dd-802b-179483b1c209",
                     "path": "2DVector",
-                    "interactions": "",
+                    "interactions": "Hold,Press(behavior=2)",
                     "processors": "",
                     "groups": "",
                     "action": "Movement",
@@ -105,6 +113,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Ability 2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "085dfe37-ce85-4455-b742-e07e91a69e84",
+                    "path": "<Keyboard>/space",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
