@@ -22,8 +22,17 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         Move();
+        Debug.Log(isAirborne);
     }
 
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.collider.CompareTag("Ground"))
+        {
+            isAirborne = false;
+        }
+    }
     private void OnJump(InputValue value)
     {
         if (value.isPressed && isAirborne == false)
@@ -35,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
     private void Jump()
     {
         rb.AddForce(Vector3.up * jumpForce);
+        isAirborne = true;
     }
 
     #region Movement Logic
@@ -71,7 +81,6 @@ public class PlayerMovement : MonoBehaviour
         if(wasdInput == Vector2.zero) { walkVelocity = Vector3.zero; }
         Vector3 movement = new Vector3(walkVelocity.x, 0, walkVelocity.z).normalized * moveSpeed * Time.deltaTime;
         transform.Translate(movement);
-        //transform.Translate(movement);
     }
     #endregion
 }
