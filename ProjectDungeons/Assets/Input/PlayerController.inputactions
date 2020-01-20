@@ -2,7 +2,7 @@
     "name": "PlayerController",
     "maps": [
         {
-            "name": "Combat",
+            "name": "PlayerActions",
             "id": "d65b52cd-e441-4602-aa9c-284c20e2c735",
             "actions": [
                 {
@@ -14,17 +14,9 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Ability 1",
+                    "name": "Camera",
                     "type": "Button",
-                    "id": "f7998796-5624-4ddc-8a1a-0dd5ceeef347",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "Ability 2",
-                    "type": "Button",
-                    "id": "5578468c-74b8-482d-a65b-d05052363240",
+                    "id": "feaa04b9-b393-4bc5-9417-4e1a4f27b69b",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
@@ -32,7 +24,23 @@
                 {
                     "name": "Jump",
                     "type": "Button",
-                    "id": "feaa04b9-b393-4bc5-9417-4e1a4f27b69b",
+                    "id": "f7998796-5624-4ddc-8a1a-0dd5ceeef347",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Ability 1",
+                    "type": "Button",
+                    "id": "5578468c-74b8-482d-a65b-d05052363240",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Ability 2",
+                    "type": "Button",
+                    "id": "743d9635-bcf3-4c06-ace0-27d22fe0717c",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
@@ -96,6 +104,17 @@
                 },
                 {
                     "name": "",
+                    "id": "085dfe37-ce85-4455-b742-e07e91a69e84",
+                    "path": "<Keyboard>/space",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "899dc4e3-71e5-4d42-a8d1-1a5f82450d22",
                     "path": "<Keyboard>/1",
                     "interactions": "",
@@ -118,12 +137,12 @@
                 },
                 {
                     "name": "",
-                    "id": "085dfe37-ce85-4455-b742-e07e91a69e84",
-                    "path": "<Keyboard>/space",
-                    "interactions": "Press",
+                    "id": "551d8ec6-9679-4758-9ff7-93d57d339772",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "Hold",
                     "processors": "",
                     "groups": "",
-                    "action": "Jump",
+                    "action": "Camera",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

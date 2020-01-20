@@ -15,7 +15,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
     ""name"": ""PlayerController"",
     ""maps"": [
         {
-            ""name"": ""Combat"",
+            ""name"": ""PlayerActions"",
             ""id"": ""d65b52cd-e441-4602-aa9c-284c20e2c735"",
             ""actions"": [
                 {
@@ -27,17 +27,9 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Ability 1"",
+                    ""name"": ""Camera"",
                     ""type"": ""Button"",
-                    ""id"": ""f7998796-5624-4ddc-8a1a-0dd5ceeef347"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""Ability 2"",
-                    ""type"": ""Button"",
-                    ""id"": ""5578468c-74b8-482d-a65b-d05052363240"",
+                    ""id"": ""feaa04b9-b393-4bc5-9417-4e1a4f27b69b"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
@@ -45,7 +37,23 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 {
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
-                    ""id"": ""feaa04b9-b393-4bc5-9417-4e1a4f27b69b"",
+                    ""id"": ""f7998796-5624-4ddc-8a1a-0dd5ceeef347"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Ability 1"",
+                    ""type"": ""Button"",
+                    ""id"": ""5578468c-74b8-482d-a65b-d05052363240"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Ability 2"",
+                    ""type"": ""Button"",
+                    ""id"": ""743d9635-bcf3-4c06-ace0-27d22fe0717c"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
@@ -109,6 +117,17 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""085dfe37-ce85-4455-b742-e07e91a69e84"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""899dc4e3-71e5-4d42-a8d1-1a5f82450d22"",
                     ""path"": ""<Keyboard>/1"",
                     ""interactions"": """",
@@ -131,12 +150,12 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""085dfe37-ce85-4455-b742-e07e91a69e84"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": ""Press"",
+                    ""id"": ""551d8ec6-9679-4758-9ff7-93d57d339772"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": ""Hold"",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Jump"",
+                    ""action"": ""Camera"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -145,12 +164,13 @@ public class @PlayerController : IInputActionCollection, IDisposable
     ],
     ""controlSchemes"": []
 }");
-        // Combat
-        m_Combat = asset.FindActionMap("Combat", throwIfNotFound: true);
-        m_Combat_Movement = m_Combat.FindAction("Movement", throwIfNotFound: true);
-        m_Combat_Ability1 = m_Combat.FindAction("Ability 1", throwIfNotFound: true);
-        m_Combat_Ability2 = m_Combat.FindAction("Ability 2", throwIfNotFound: true);
-        m_Combat_Jump = m_Combat.FindAction("Jump", throwIfNotFound: true);
+        // PlayerActions
+        m_PlayerActions = asset.FindActionMap("PlayerActions", throwIfNotFound: true);
+        m_PlayerActions_Movement = m_PlayerActions.FindAction("Movement", throwIfNotFound: true);
+        m_PlayerActions_Camera = m_PlayerActions.FindAction("Camera", throwIfNotFound: true);
+        m_PlayerActions_Jump = m_PlayerActions.FindAction("Jump", throwIfNotFound: true);
+        m_PlayerActions_Ability1 = m_PlayerActions.FindAction("Ability 1", throwIfNotFound: true);
+        m_PlayerActions_Ability2 = m_PlayerActions.FindAction("Ability 2", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -197,67 +217,76 @@ public class @PlayerController : IInputActionCollection, IDisposable
         asset.Disable();
     }
 
-    // Combat
-    private readonly InputActionMap m_Combat;
-    private ICombatActions m_CombatActionsCallbackInterface;
-    private readonly InputAction m_Combat_Movement;
-    private readonly InputAction m_Combat_Ability1;
-    private readonly InputAction m_Combat_Ability2;
-    private readonly InputAction m_Combat_Jump;
-    public struct CombatActions
+    // PlayerActions
+    private readonly InputActionMap m_PlayerActions;
+    private IPlayerActionsActions m_PlayerActionsActionsCallbackInterface;
+    private readonly InputAction m_PlayerActions_Movement;
+    private readonly InputAction m_PlayerActions_Camera;
+    private readonly InputAction m_PlayerActions_Jump;
+    private readonly InputAction m_PlayerActions_Ability1;
+    private readonly InputAction m_PlayerActions_Ability2;
+    public struct PlayerActionsActions
     {
         private @PlayerController m_Wrapper;
-        public CombatActions(@PlayerController wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Movement => m_Wrapper.m_Combat_Movement;
-        public InputAction @Ability1 => m_Wrapper.m_Combat_Ability1;
-        public InputAction @Ability2 => m_Wrapper.m_Combat_Ability2;
-        public InputAction @Jump => m_Wrapper.m_Combat_Jump;
-        public InputActionMap Get() { return m_Wrapper.m_Combat; }
+        public PlayerActionsActions(@PlayerController wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Movement => m_Wrapper.m_PlayerActions_Movement;
+        public InputAction @Camera => m_Wrapper.m_PlayerActions_Camera;
+        public InputAction @Jump => m_Wrapper.m_PlayerActions_Jump;
+        public InputAction @Ability1 => m_Wrapper.m_PlayerActions_Ability1;
+        public InputAction @Ability2 => m_Wrapper.m_PlayerActions_Ability2;
+        public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(CombatActions set) { return set.Get(); }
-        public void SetCallbacks(ICombatActions instance)
+        public static implicit operator InputActionMap(PlayerActionsActions set) { return set.Get(); }
+        public void SetCallbacks(IPlayerActionsActions instance)
         {
-            if (m_Wrapper.m_CombatActionsCallbackInterface != null)
+            if (m_Wrapper.m_PlayerActionsActionsCallbackInterface != null)
             {
-                @Movement.started -= m_Wrapper.m_CombatActionsCallbackInterface.OnMovement;
-                @Movement.performed -= m_Wrapper.m_CombatActionsCallbackInterface.OnMovement;
-                @Movement.canceled -= m_Wrapper.m_CombatActionsCallbackInterface.OnMovement;
-                @Ability1.started -= m_Wrapper.m_CombatActionsCallbackInterface.OnAbility1;
-                @Ability1.performed -= m_Wrapper.m_CombatActionsCallbackInterface.OnAbility1;
-                @Ability1.canceled -= m_Wrapper.m_CombatActionsCallbackInterface.OnAbility1;
-                @Ability2.started -= m_Wrapper.m_CombatActionsCallbackInterface.OnAbility2;
-                @Ability2.performed -= m_Wrapper.m_CombatActionsCallbackInterface.OnAbility2;
-                @Ability2.canceled -= m_Wrapper.m_CombatActionsCallbackInterface.OnAbility2;
-                @Jump.started -= m_Wrapper.m_CombatActionsCallbackInterface.OnJump;
-                @Jump.performed -= m_Wrapper.m_CombatActionsCallbackInterface.OnJump;
-                @Jump.canceled -= m_Wrapper.m_CombatActionsCallbackInterface.OnJump;
+                @Movement.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnMovement;
+                @Movement.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnMovement;
+                @Movement.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnMovement;
+                @Camera.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnCamera;
+                @Camera.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnCamera;
+                @Camera.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnCamera;
+                @Jump.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnJump;
+                @Ability1.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnAbility1;
+                @Ability1.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnAbility1;
+                @Ability1.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnAbility1;
+                @Ability2.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnAbility2;
+                @Ability2.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnAbility2;
+                @Ability2.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnAbility2;
             }
-            m_Wrapper.m_CombatActionsCallbackInterface = instance;
+            m_Wrapper.m_PlayerActionsActionsCallbackInterface = instance;
             if (instance != null)
             {
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
+                @Camera.started += instance.OnCamera;
+                @Camera.performed += instance.OnCamera;
+                @Camera.canceled += instance.OnCamera;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
                 @Ability1.started += instance.OnAbility1;
                 @Ability1.performed += instance.OnAbility1;
                 @Ability1.canceled += instance.OnAbility1;
                 @Ability2.started += instance.OnAbility2;
                 @Ability2.performed += instance.OnAbility2;
                 @Ability2.canceled += instance.OnAbility2;
-                @Jump.started += instance.OnJump;
-                @Jump.performed += instance.OnJump;
-                @Jump.canceled += instance.OnJump;
             }
         }
     }
-    public CombatActions @Combat => new CombatActions(this);
-    public interface ICombatActions
+    public PlayerActionsActions @PlayerActions => new PlayerActionsActions(this);
+    public interface IPlayerActionsActions
     {
         void OnMovement(InputAction.CallbackContext context);
+        void OnCamera(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
         void OnAbility1(InputAction.CallbackContext context);
         void OnAbility2(InputAction.CallbackContext context);
-        void OnJump(InputAction.CallbackContext context);
     }
 }

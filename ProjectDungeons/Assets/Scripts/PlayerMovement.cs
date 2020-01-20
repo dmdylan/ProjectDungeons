@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Collider))]
@@ -8,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     private bool isAirborne = false;
 
+    Vector2 playerRotationInput;
     Vector2 wasdInput;
     Vector3 walkVelocity;
 
@@ -22,7 +24,6 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         Move();
-        Debug.Log(isAirborne);
     }
 
 
@@ -47,14 +48,30 @@ public class PlayerMovement : MonoBehaviour
         isAirborne = true;
     }
 
+    private void OnCamera(InputValue value)
+    {
+        playerRotationInput = value.Get<Vector2>();
+        ProcessRotationInput();
+    }
+
+    private void ProcessRotationInput()
+    {
+        throw new NotImplementedException();
+    }
+
+    private void Rotate()
+    {
+
+    }
+
     #region Movement Logic
     private void OnMovement(InputValue value)
     {
         wasdInput = value.Get<Vector2>();
-        ProcessInput();       
+        ProcessMovementInput();       
     }
     
-    private void ProcessInput()
+    private void ProcessMovementInput()
     {
         //Reset movement velocity
         walkVelocity = Vector3.zero;
