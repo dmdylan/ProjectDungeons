@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
 {
+    private Camera playerCamera;
     private Rigidbody rb;
     private bool isAirborne = false;
 
@@ -18,15 +19,17 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+        playerCamera = Camera.main;
         rb = GetComponent<Rigidbody>();
     }
 
     private void Update()
     {
         Move();
+        Rotate();
     }
 
-
+    #region Jump Logic
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.collider.CompareTag("Ground"))
@@ -47,21 +50,15 @@ public class PlayerMovement : MonoBehaviour
         rb.AddForce(Vector3.up * jumpForce);
         isAirborne = true;
     }
-
-    private void OnCamera(InputValue value)
-    {
-        playerRotationInput = value.Get<Vector2>();
-        ProcessRotationInput();
-    }
-
-    private void ProcessRotationInput()
-    {
-        throw new NotImplementedException();
-    }
+    #endregion
 
     private void Rotate()
     {
-
+        if (Input.GetMouseButton(1))
+        {
+            float yRotation = playerCamera.transform.eulerAngles.y;
+            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, yRotation, transform.rotation.eulerAngles.z);
+        }        
     }
 
     #region Movement Logic
@@ -78,10 +75,12 @@ public class PlayerMovement : MonoBehaviour
 
         //By default, the input is a float. Which makes the speed ramp up/down.
         //Setting the input values to either 1/-1 fixes this making the movement crisp by starting and stopping instantly.
+
         //Set vertical value
         float vval = 0f;
         if(wasdInput.y > 0f) { vval += 1f; }
         else if (wasdInput.y <0) { vval -= 1f; }
+
         //Set horizontal input value
         float hval = 0f;
         if(wasdInput.x > 0f) { hval += 1f; }
@@ -89,6 +88,7 @@ public class PlayerMovement : MonoBehaviour
 
         //Set vertical movement velocity
         if(vval != 0) { walkVelocity += Vector3.forward * vval; }
+
         //Set horizontal movement veloctiy
         if(hval != 0) { walkVelocity += Vector3.right * hval; }      
     }

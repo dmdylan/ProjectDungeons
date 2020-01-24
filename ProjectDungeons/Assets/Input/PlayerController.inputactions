@@ -14,14 +14,6 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Camera",
-                    "type": "Button",
-                    "id": "feaa04b9-b393-4bc5-9417-4e1a4f27b69b",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
                     "name": "Jump",
                     "type": "Button",
                     "id": "f7998796-5624-4ddc-8a1a-0dd5ceeef347",
@@ -132,17 +124,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Ability 2",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "551d8ec6-9679-4758-9ff7-93d57d339772",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "Hold",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Camera",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

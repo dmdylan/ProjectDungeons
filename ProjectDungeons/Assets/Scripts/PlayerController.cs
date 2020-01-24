@@ -27,14 +27,6 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Camera"",
-                    ""type"": ""Button"",
-                    ""id"": ""feaa04b9-b393-4bc5-9417-4e1a4f27b69b"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""f7998796-5624-4ddc-8a1a-0dd5ceeef347"",
@@ -147,17 +139,6 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""action"": ""Ability 2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""551d8ec6-9679-4758-9ff7-93d57d339772"",
-                    ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": ""Hold"",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Camera"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -167,7 +148,6 @@ public class @PlayerController : IInputActionCollection, IDisposable
         // PlayerActions
         m_PlayerActions = asset.FindActionMap("PlayerActions", throwIfNotFound: true);
         m_PlayerActions_Movement = m_PlayerActions.FindAction("Movement", throwIfNotFound: true);
-        m_PlayerActions_Camera = m_PlayerActions.FindAction("Camera", throwIfNotFound: true);
         m_PlayerActions_Jump = m_PlayerActions.FindAction("Jump", throwIfNotFound: true);
         m_PlayerActions_Ability1 = m_PlayerActions.FindAction("Ability 1", throwIfNotFound: true);
         m_PlayerActions_Ability2 = m_PlayerActions.FindAction("Ability 2", throwIfNotFound: true);
@@ -221,7 +201,6 @@ public class @PlayerController : IInputActionCollection, IDisposable
     private readonly InputActionMap m_PlayerActions;
     private IPlayerActionsActions m_PlayerActionsActionsCallbackInterface;
     private readonly InputAction m_PlayerActions_Movement;
-    private readonly InputAction m_PlayerActions_Camera;
     private readonly InputAction m_PlayerActions_Jump;
     private readonly InputAction m_PlayerActions_Ability1;
     private readonly InputAction m_PlayerActions_Ability2;
@@ -230,7 +209,6 @@ public class @PlayerController : IInputActionCollection, IDisposable
         private @PlayerController m_Wrapper;
         public PlayerActionsActions(@PlayerController wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_PlayerActions_Movement;
-        public InputAction @Camera => m_Wrapper.m_PlayerActions_Camera;
         public InputAction @Jump => m_Wrapper.m_PlayerActions_Jump;
         public InputAction @Ability1 => m_Wrapper.m_PlayerActions_Ability1;
         public InputAction @Ability2 => m_Wrapper.m_PlayerActions_Ability2;
@@ -246,9 +224,6 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 @Movement.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnMovement;
-                @Camera.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnCamera;
-                @Camera.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnCamera;
-                @Camera.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnCamera;
                 @Jump.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnJump;
@@ -265,9 +240,6 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
-                @Camera.started += instance.OnCamera;
-                @Camera.performed += instance.OnCamera;
-                @Camera.canceled += instance.OnCamera;
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
@@ -284,7 +256,6 @@ public class @PlayerController : IInputActionCollection, IDisposable
     public interface IPlayerActionsActions
     {
         void OnMovement(InputAction.CallbackContext context);
-        void OnCamera(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnAbility1(InputAction.CallbackContext context);
         void OnAbility2(InputAction.CallbackContext context);

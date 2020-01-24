@@ -31,7 +31,7 @@ public class WowCamera : MonoBehaviour
     private float currentDistance;
     private float desiredDistance;
     private float correctedDistance;
-    //
+    
     void Start()
     {
         Vector3 angles = transform.eulerAngles;
