@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
 {
+    private Animator playerAnimator;
     private Camera playerCamera;
     private Rigidbody rb;
     private bool isAirborne = false;
@@ -21,12 +22,14 @@ public class PlayerMovement : MonoBehaviour
     {
         playerCamera = Camera.main;
         rb = GetComponent<Rigidbody>();
+        playerAnimator = GetComponent<Animator>();
     }
 
     private void Update()
     {
         Move();
         Rotate();
+        Debug.Log(playerAnimator.GetBool("isMoving"));
     }
 
     #region Jump Logic
@@ -90,7 +93,16 @@ public class PlayerMovement : MonoBehaviour
         if(vval != 0) { walkVelocity += Vector3.forward * vval; }
 
         //Set horizontal movement veloctiy
-        if(hval != 0) { walkVelocity += Vector3.right * hval; }      
+        if(hval != 0) { walkVelocity += Vector3.right * hval; } 
+
+        if(hval == 0 && vval == 0)
+        {
+            playerAnimator.SetBool("isMoving", false);
+        }
+        else
+        {
+            playerAnimator.SetBool("isMoving", true);
+        }     
     }
 
     private void Move()
