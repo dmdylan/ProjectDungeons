@@ -47,9 +47,9 @@ public class WowCamera : MonoBehaviour
             this.gameObject.GetComponent<Rigidbody>().freezeRotation = true;
     }
 
-    /**
-     * Camera logic on LateUpdate to only update after all character movement logic has been handled.
-     */
+    
+    //Camera logic on LateUpdate to only update after all character movement logic has been handled.
+     
     void LateUpdate()
     {
         Vector3 vTargetOffset;
