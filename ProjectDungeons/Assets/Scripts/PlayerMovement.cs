@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         Move();
-        Rotate();
+        RotateWithCamera();
         Debug.Log(playerAnimator.GetBool("isMoving"));
     }
 
@@ -55,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
     }
     #endregion
 
-    private void Rotate()
+    private void RotateWithCamera()
     {
         if (Input.GetMouseButton(1))
         {
@@ -103,6 +103,11 @@ public class PlayerMovement : MonoBehaviour
         {
             playerAnimator.SetBool("isMoving", true);
         }     
+    }
+
+    private void RotateWithMovement()
+    {
+        
     }
 
     private void Move()
