@@ -2,18 +2,18 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Collider))]
-[RequireComponent(typeof(Rigidbody))]
+//[RequireComponent(typeof(Collider))]
+//[RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
 {
     private Animator playerAnimator;
     private Camera playerCamera;
-    private Rigidbody rb;
-    private bool isAirborne = false;
+    private CharacterController characterController;
 
     Vector2 playerRotationInput;
     Vector2 wasdInput;
     Vector3 walkVelocity;
+    Vector3 moveDirection;
 
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float jumpForce = 250f;
@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         playerCamera = Camera.main;
-        rb = GetComponent<Rigidbody>();
+        characterController = GetComponent<CharacterController>();
         playerAnimator = GetComponent<Animator>();
     }
 
@@ -29,20 +29,13 @@ public class PlayerMovement : MonoBehaviour
     {
         Move();
         RotateWithCamera();
-        Debug.Log(playerAnimator.GetBool("isMoving"));
     }
 
     #region Jump Logic
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.collider.CompareTag("Ground"))
-        {
-            isAirborne = false;
-        }
-    }
+
     private void OnJump(InputValue value)
     {
-        if (value.isPressed && isAirborne == false)
+        if (value.isPressed && characterController.isGrounded)
         {
             Jump();
         }
@@ -50,9 +43,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        rb.AddForce(Vector3.up * jumpForce);
-        isAirborne = true;
+        moveDirection.y = jumpForce;
     }
+
     #endregion
 
     private void RotateWithCamera()
@@ -105,16 +98,12 @@ public class PlayerMovement : MonoBehaviour
         }     
     }
 
-    private void RotateWithMovement()
-    {
-        
-    }
-
     private void Move()
     {
         if(wasdInput == Vector2.zero) { walkVelocity = Vector3.zero; }
-        Vector3 movement = new Vector3(walkVelocity.x, 0, walkVelocity.z).normalized * moveSpeed * Time.deltaTime;
-        transform.Translate(movement);
+        Vector3 moveDirection = new Vector3(walkVelocity.x, 0, walkVelocity.z).normalized * moveSpeed * Time.deltaTime;
+        moveDirection.y -= 20f * Time.deltaTime;
+        characterController.Move(moveDirection);
     }
     #endregion
 }
