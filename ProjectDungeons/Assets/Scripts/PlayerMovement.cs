@@ -13,10 +13,11 @@ public class PlayerMovement : MonoBehaviour
     Vector2 playerRotationInput;
     Vector2 wasdInput;
     Vector3 walkVelocity;
-    Vector3 moveDirection;
+    Vector3 moveDirection = Vector3.zero;
 
     [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float jumpForce = 250f;
+    [SerializeField] private float jumpForce = 20f;
+    [SerializeField] private float gravity = 1f;
 
     private void Awake()
     {
@@ -29,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Move();
         RotateWithCamera();
+        Debug.Log(characterController.isGrounded);
     }
 
     #region Jump Logic
@@ -100,10 +102,21 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
-        if(wasdInput == Vector2.zero) { walkVelocity = Vector3.zero; }
-        Vector3 moveDirection = new Vector3(walkVelocity.x, 0, walkVelocity.z).normalized * moveSpeed * Time.deltaTime;
-        moveDirection.y -= 20f * Time.deltaTime;
-        characterController.Move(moveDirection);
+        if(wasdInput == Vector2.zero) 
+        { 
+            walkVelocity = Vector3.zero; 
+        }
+
+        if(!characterController.isGrounded)
+        {
+            moveDirection.y -= gravity * Time.deltaTime; 
+        }
+        else
+        {
+            moveDirection = transform.TransformDirection(walkVelocity.x, moveDirection.y, walkVelocity.z).normalized;
+        }
+
+        characterController.Move(moveDirection * moveSpeed * Time.deltaTime);
     }
     #endregion
 }
