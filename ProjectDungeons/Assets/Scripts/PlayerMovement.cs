@@ -114,6 +114,11 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             moveDirection = transform.TransformDirection(walkVelocity.x, moveDirection.y, walkVelocity.z).normalized;
+            if(wasdInput.y > 0)
+            {
+                Vector3 lookDirection = Vector3.Cross(walkVelocity, moveDirection);
+                transform.localRotation = Quaternion.LookRotation(lookDirection);
+            }
         }
 
         characterController.Move(moveDirection * moveSpeed * Time.deltaTime);
