@@ -2,8 +2,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-//[RequireComponent(typeof(Collider))]
-//[RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
 {
     private Animator playerAnimator;
@@ -76,13 +74,13 @@ public class PlayerMovement : MonoBehaviour
 
         //Set vertical value
         float vval = 0f;
-        if(wasdInput.y > 0f) { vval += 1f; }
-        else if (wasdInput.y <0) { vval -= 1f; }
+        if(wasdInput.y > 0f) { vval = 1f; }
+        else if (wasdInput.y <0) { vval = -1f; }
 
         //Set horizontal input value
         float hval = 0f;
-        if(wasdInput.x > 0f) { hval += 1f; }
-        else if (wasdInput.x < 0f) { hval -= 1f; }
+        if(wasdInput.x > 0f) { hval = 1f; }
+        else if (wasdInput.x < 0f) { hval = -1f; }
 
         //Set vertical movement velocity
         if(vval != 0) { walkVelocity += Vector3.forward * vval; }
@@ -100,6 +98,14 @@ public class PlayerMovement : MonoBehaviour
         }     
     }
 
+    private void RotateCharacter()
+    {
+        if(wasdInput.y > 0 && wasdInput.x > 0)
+        {
+            transform.eulerAngles = new Vector3 (0, 45, 0);
+        }
+    }
+
     private void Move()
     {
         if(wasdInput == Vector2.zero) 
@@ -113,15 +119,13 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            moveDirection = transform.TransformDirection(walkVelocity.x, moveDirection.y, walkVelocity.z).normalized;
-            if(wasdInput.y > 0)
-            {
-                Vector3 lookDirection = Vector3.Cross(walkVelocity, moveDirection);
-                transform.localRotation = Quaternion.LookRotation(lookDirection);
-            }
+            moveDirection = transform.TransformDirection(walkVelocity.x, moveDirection.y -= .001f, walkVelocity.z).normalized;
+            Debug.DrawLine(transform.position, transform.forward, Color.red);
+            Debug.DrawLine(transform.position, Vector3.forward, Color.green);
         }
 
         characterController.Move(moveDirection * moveSpeed * Time.deltaTime);
+        RotateCharacter();
     }
     #endregion
 }
