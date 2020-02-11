@@ -28,7 +28,6 @@ public class PlayerMovement : MonoBehaviour
     {
         Move();
         RotateWithCamera();
-        Debug.Log(characterController.isGrounded);
     }
 
     #region Jump Logic
@@ -102,7 +101,15 @@ public class PlayerMovement : MonoBehaviour
     {
         if(wasdInput.y > 0 && wasdInput.x > 0)
         {
-            transform.eulerAngles = new Vector3 (0, 45, 0);
+            transform.rotation = Quaternion.LookRotation(moveDirection);
+        }
+        else if(wasdInput.y > 0 && wasdInput.x < 0)
+        {
+            transform.eulerAngles = new Vector3 (0, -45, 0);
+        }
+        else
+        {
+            transform.eulerAngles = new Vector3 (0,0,0);
         }
     }
 
@@ -123,9 +130,8 @@ public class PlayerMovement : MonoBehaviour
             Debug.DrawLine(transform.position, transform.forward, Color.red);
             Debug.DrawLine(transform.position, Vector3.forward, Color.green);
         }
-
+    
         characterController.Move(moveDirection * moveSpeed * Time.deltaTime);
-        RotateCharacter();
     }
     #endregion
 }
