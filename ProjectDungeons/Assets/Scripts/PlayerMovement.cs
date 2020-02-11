@@ -8,10 +8,10 @@ public class PlayerMovement : MonoBehaviour
     private Camera playerCamera;
     private CharacterController characterController;
 
-    Vector2 playerRotationInput;
-    Vector2 wasdInput;
-    Vector3 walkVelocity;
-    Vector3 moveDirection = Vector3.zero;
+    private Vector2 wasdInput;
+    private Vector3 walkVelocity;
+    private Vector3 previousWalkVelocity;
+    private Vector3 moveDirection = Vector3.zero;
 
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float jumpForce = 20f;
@@ -24,9 +24,10 @@ public class PlayerMovement : MonoBehaviour
         playerAnimator = GetComponent<Animator>();
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         Move();
+        Debug.Log(walkVelocity);
         RotateWithCamera();
     }
 
@@ -65,6 +66,8 @@ public class PlayerMovement : MonoBehaviour
     
     private void ProcessMovementInput()
     {
+        previousWalkVelocity = walkVelocity;
+
         //Reset movement velocity
         walkVelocity = Vector3.zero;
 
@@ -97,21 +100,6 @@ public class PlayerMovement : MonoBehaviour
         }     
     }
 
-    private void RotateCharacter()
-    {
-        if(wasdInput.y > 0 && wasdInput.x > 0)
-        {
-            transform.rotation = Quaternion.LookRotation(moveDirection);
-        }
-        else if(wasdInput.y > 0 && wasdInput.x < 0)
-        {
-            transform.eulerAngles = new Vector3 (0, -45, 0);
-        }
-        else
-        {
-            transform.eulerAngles = new Vector3 (0,0,0);
-        }
-    }
 
     private void Move()
     {
