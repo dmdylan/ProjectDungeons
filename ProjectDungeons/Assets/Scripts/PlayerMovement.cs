@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Move();
         Debug.Log(walkVelocity);
+        Debug.DrawRay(transform.position, transform.forward * 3, Color.blue);
         RotateWithCamera();
     }
 
@@ -100,6 +101,10 @@ public class PlayerMovement : MonoBehaviour
         }     
     }
 
+    private void RotatePlayer()
+    {
+        
+    }
 
     private void Move()
     {
@@ -115,10 +120,9 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             moveDirection = transform.TransformDirection(walkVelocity.x, moveDirection.y -= .001f, walkVelocity.z).normalized;
-            Debug.DrawLine(transform.position, transform.forward, Color.red);
-            Debug.DrawLine(transform.position, Vector3.forward, Color.green);
         }
-    
+
+        RotatePlayer();
         characterController.Move(moveDirection * moveSpeed * Time.deltaTime);
     }
     #endregion

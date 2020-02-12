@@ -299,7 +299,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh14594
+  m_Name: pb_Mesh14596
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -530,7 +530,8 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 3.0092666e-36, y: 1.009742e-28, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 3.0092666e-36, y: 1.6940659e-21, z: 2.3509887e-38,
+    w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -4401,6 +4402,7 @@ GameObject:
   - component: {fileID: 1862654921}
   - component: {fileID: 1862654920}
   - component: {fileID: 1862654919}
+  - component: {fileID: 1862654924}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -4698,3 +4700,15 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1862654924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1862654918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d103fe8aa7e3a754fb02f227c4564846, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
