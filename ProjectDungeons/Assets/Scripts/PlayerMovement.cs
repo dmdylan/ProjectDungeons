@@ -101,11 +101,6 @@ public class PlayerMovement : MonoBehaviour
         }     
     }
 
-    private void RotatePlayer()
-    {
-        
-    }
-
     private void Move()
     {
         if(wasdInput == Vector2.zero) 
@@ -122,7 +117,6 @@ public class PlayerMovement : MonoBehaviour
             moveDirection = transform.TransformDirection(walkVelocity.x, moveDirection.y -= .001f, walkVelocity.z).normalized;
         }
 
-        RotatePlayer();
         characterController.Move(moveDirection * moveSpeed * Time.deltaTime);
     }
     #endregion
