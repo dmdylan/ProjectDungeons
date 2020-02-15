@@ -25,7 +25,7 @@ public class PlayerCharacterMovement : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(moveDirection);
+        //Debug.Log(moveDirection);
         horizontalMovementInput = Input.GetAxisRaw("Horizontal");
         forwardMovementInput = Input.GetAxisRaw("Vertical");
     }
@@ -50,6 +50,15 @@ public class PlayerCharacterMovement : MonoBehaviour
     //Player rotation. Movement inputs are taken in at set at default 1 or -1 because of normal vectors, and then mutiplied by moveSpeed value. 
     //So they become 5 or -5
 
+    private void RotateThePlayer()
+    {
+        if (Input.GetMouseButton(1))
+            return;
+
+        float angle = Mathf.Atan2(horizontalMovementInput, forwardMovementInput) * Mathf.Rad2Deg;
+        Debug.Log(angle);
+        transform.Rotate(transform.up, angle);// = Quaternion.Euler(0,angle,0);
+    }
 
     private void MoveThePlayer()
     {
@@ -66,8 +75,8 @@ public class PlayerCharacterMovement : MonoBehaviour
         }
 
         moveDirection.y -= gravity * Time.deltaTime;
+        RotateThePlayer();
         characterController.Move(moveDirection * Time.deltaTime);
-
         //transform.Rotate(Vector3.up, Mathf.DeltaAngle(moveDirection.x, moveDirection.z));
     }
 }
