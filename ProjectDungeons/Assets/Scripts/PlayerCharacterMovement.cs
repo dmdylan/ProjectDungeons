@@ -23,17 +23,20 @@ public class PlayerCharacterMovement : MonoBehaviour
         playerAnimator = GetComponent<Animator>();
     }
 
-    private void Update()
-    {
-        //Debug.Log(moveDirection);
-        horizontalMovementInput = Input.GetAxisRaw("Horizontal");
-        forwardMovementInput = Input.GetAxisRaw("Vertical");
-    }
+    //private void Update()
+    //{
+    //    //Debug.Log(moveDirection);
+    //    horizontalMovementInput = Input.GetAxisRaw("Horizontal");
+    //    forwardMovementInput = Input.GetAxisRaw("Vertical");
+    //}
 
     // Update is called once per frame
-    void LateUpdate()
+    void Update()
     {
-        Debug.Log(characterController.isGrounded);
+        Debug.DrawRay(playerCamera.transform.position, transform.forward * 20, Color.blue);
+
+        horizontalMovementInput = Input.GetAxisRaw("Horizontal");
+        forwardMovementInput = Input.GetAxisRaw("Vertical");
         MoveThePlayer();
         RotateWithCamera();
     }
@@ -43,7 +46,7 @@ public class PlayerCharacterMovement : MonoBehaviour
         if (Input.GetMouseButton(1))
         {
             float yRotation = playerCamera.transform.eulerAngles.y;
-            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, yRotation, transform.rotation.eulerAngles.z);
+            transform.rotation = Quaternion.Euler(0, yRotation, 0);
         }
     }
 
@@ -52,12 +55,20 @@ public class PlayerCharacterMovement : MonoBehaviour
 
     private void RotateThePlayer()
     {
+        float angle = Mathf.Atan2(horizontalMovementInput, forwardMovementInput) * Mathf.Rad2Deg;
+        
         if (Input.GetMouseButton(1))
             return;
 
-        float angle = Mathf.Atan2(horizontalMovementInput, forwardMovementInput) * Mathf.Rad2Deg;
+        if (angle == 90 || angle == -90 || angle == 180 || angle == 135 || angle == -135)
+            return;
+
+        //transform.Rotate(transform.up, angle, Space.Self);
+        //transform.rotation = Quaternion.Euler(0, angle, 0);
+
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, angle, 0), 0);
+        //transform.eulerAngles = new Vector3 (0,angle,0);
         Debug.Log(angle);
-        transform.Rotate(transform.up, angle);// = Quaternion.Euler(0,angle,0);
     }
 
     private void MoveThePlayer()
@@ -74,9 +85,9 @@ public class PlayerCharacterMovement : MonoBehaviour
             }
         }
 
-        moveDirection.y -= gravity * Time.deltaTime;
         RotateThePlayer();
+        moveDirection.y -= gravity * Time.deltaTime;
         characterController.Move(moveDirection * Time.deltaTime);
-        //transform.Rotate(Vector3.up, Mathf.DeltaAngle(moveDirection.x, moveDirection.z));
+        
     }
 }
