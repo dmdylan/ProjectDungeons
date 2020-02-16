@@ -42,9 +42,9 @@ public class WowCamera : MonoBehaviour
         desiredDistance = distance;
         correctedDistance = distance;
 
-        // Make the rigid body not change rotation
-        if (this.gameObject.GetComponent<Rigidbody>())
-            this.gameObject.GetComponent<Rigidbody>().freezeRotation = true;
+       // // Make the rigid body not change rotation
+       // if (this.gameObject.GetComponent<Rigidbody>())
+       //     this.gameObject.GetComponent<Rigidbody>().freezeRotation = true;
     }
 
     

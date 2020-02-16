@@ -34,11 +34,12 @@ public class PlayerCharacterMovement : MonoBehaviour
     void Update()
     {
         Debug.DrawRay(playerCamera.transform.position, transform.forward * 20, Color.blue);
-
         horizontalMovementInput = Input.GetAxisRaw("Horizontal");
         forwardMovementInput = Input.GetAxisRaw("Vertical");
         MoveThePlayer();
         RotateWithCamera();
+        Debug.Log("Hori" + horizontalMovementInput);
+        Debug.Log("Vert" + forwardMovementInput);
     }
 
     private void RotateWithCamera()
@@ -50,25 +51,16 @@ public class PlayerCharacterMovement : MonoBehaviour
         }
     }
 
-    //Player rotation. Movement inputs are taken in at set at default 1 or -1 because of normal vectors, and then mutiplied by moveSpeed value. 
-    //So they become 5 or -5
-
     private void RotateThePlayer()
     {
-        float angle = Mathf.Atan2(horizontalMovementInput, forwardMovementInput) * Mathf.Rad2Deg;
-        
+        //float angle = Mathf.Atan2(horizontalMovementInput, forwardMovementInput) * Mathf.Rad2Deg;  
         if (Input.GetMouseButton(1))
-            return;
+            return;       
 
-        if (angle == 90 || angle == -90 || angle == 180 || angle == 135 || angle == -135)
-            return;
-
-        //transform.Rotate(transform.up, angle, Space.Self);
-        //transform.rotation = Quaternion.Euler(0, angle, 0);
-
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, angle, 0), 0);
-        //transform.eulerAngles = new Vector3 (0,angle,0);
-        Debug.Log(angle);
+        //The chacter faces the direciton of the input
+        //But the movement then applies based on the character rotation
+        //So the chacter turns rotates left when A is held down, but then moves towards the left of the new rotation direction
+        transform.rotation = Quaternion.LookRotation(new Vector3(horizontalMovementInput,0,forwardMovementInput));
     }
 
     private void MoveThePlayer()
@@ -76,9 +68,10 @@ public class PlayerCharacterMovement : MonoBehaviour
         verticalMovement = -.001f; 
         if (characterController.isGrounded)
         {
-            moveDirection = transform.TransformDirection(horizontalMovementInput, verticalMovement, forwardMovementInput).normalized;
-            moveDirection *= moveSpeed;
+            moveDirection = new Vector3(horizontalMovementInput, verticalMovement, forwardMovementInput).normalized;
 
+
+            moveDirection *= moveSpeed;
             if (Input.GetButtonDown("Jump"))
             {
                 moveDirection.y = jumpForce;
