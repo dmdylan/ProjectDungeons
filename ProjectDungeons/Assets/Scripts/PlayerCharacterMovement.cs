@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class PlayerCharacterMovement : MonoBehaviour
 {
-    private Animator playerAnimator;
+    //private Animator playerAnimator;
+    public Transform target;
     private Camera playerCamera;
     private CharacterController characterController;
     private Vector3 moveDirection;
     private float horizontalMovementInput;
     private float forwardMovementInput;
     private float verticalMovement;
+
+    private float mouseX;
+    private float mouseY;
+    [SerializeField] private float rotationSpeed = 5;
 
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float jumpForce = 20f;
@@ -20,26 +25,19 @@ public class PlayerCharacterMovement : MonoBehaviour
     {
         playerCamera = Camera.main;
         characterController = GetComponent<CharacterController>();
-        playerAnimator = GetComponent<Animator>();
+        //playerAnimator = GetComponent<Animator>();
     }
 
-    //private void Update()
-    //{
-    //    //Debug.Log(moveDirection);
-    //    horizontalMovementInput = Input.GetAxisRaw("Horizontal");
-    //    forwardMovementInput = Input.GetAxisRaw("Vertical");
-    //}
-
-    // Update is called once per frame
     void Update()
     {
-        Debug.DrawRay(playerCamera.transform.position, transform.forward * 20, Color.blue);
         horizontalMovementInput = Input.GetAxisRaw("Horizontal");
         forwardMovementInput = Input.GetAxisRaw("Vertical");
         MoveThePlayer();
-        RotateWithCamera();
-        Debug.Log("Hori" + horizontalMovementInput);
-        Debug.Log("Vert" + forwardMovementInput);
+    }
+
+    private void LateUpdate()
+    {
+        RotateThePlayer();
     }
 
     private void RotateWithCamera()
@@ -53,14 +51,13 @@ public class PlayerCharacterMovement : MonoBehaviour
 
     private void RotateThePlayer()
     {
-        //float angle = Mathf.Atan2(horizontalMovementInput, forwardMovementInput) * Mathf.Rad2Deg;  
-        if (Input.GetMouseButton(1))
-            return;       
+        Cursor.lockState = CursorLockMode.Locked;
+        mouseX += Input.GetAxis("Mouse X") * rotationSpeed;
+        mouseY -= Input.GetAxis("Mouse Y") * rotationSpeed;
+        mouseY = Mathf.Clamp(mouseY, -60, 60);
 
-        //The chacter faces the direciton of the input
-        //But the movement then applies based on the character rotation
-        //So the chacter turns rotates left when A is held down, but then moves towards the left of the new rotation direction
-        transform.rotation = Quaternion.LookRotation(new Vector3(horizontalMovementInput,0,forwardMovementInput));
+        target.rotation = Quaternion.Euler(mouseY, mouseX, 0);
+        transform.rotation = Quaternion.Euler(0, mouseX, 0);
     }
 
     private void MoveThePlayer()
@@ -68,19 +65,16 @@ public class PlayerCharacterMovement : MonoBehaviour
         verticalMovement = -.001f; 
         if (characterController.isGrounded)
         {
-            moveDirection = new Vector3(horizontalMovementInput, verticalMovement, forwardMovementInput).normalized;
-
-
+            moveDirection = transform.TransformDirection(new Vector3(horizontalMovementInput, verticalMovement, forwardMovementInput)).normalized;
             moveDirection *= moveSpeed;
+
             if (Input.GetButtonDown("Jump"))
             {
                 moveDirection.y = jumpForce;
             }
         }
 
-        RotateThePlayer();
         moveDirection.y -= gravity * Time.deltaTime;
         characterController.Move(moveDirection * Time.deltaTime);
-        
     }
 }
