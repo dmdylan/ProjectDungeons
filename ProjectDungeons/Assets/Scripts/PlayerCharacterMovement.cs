@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerCharacterMovement : MonoBehaviour
 {
-    //private Animator playerAnimator;
+    private Animator playerAnimator;
     public Transform target;
     private Camera playerCamera;
     private CharacterController characterController;
@@ -25,7 +25,7 @@ public class PlayerCharacterMovement : MonoBehaviour
     {
         playerCamera = Camera.main;
         characterController = GetComponent<CharacterController>();
-        //playerAnimator = GetComponent<Animator>();
+        playerAnimator = GetComponent<Animator>();
     }
 
     void Update()
