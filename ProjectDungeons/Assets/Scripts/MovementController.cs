@@ -22,6 +22,8 @@ public class MovementController : MonoBehaviour
 
     private void Start()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         mainCameraTransform = Camera.main.transform;
