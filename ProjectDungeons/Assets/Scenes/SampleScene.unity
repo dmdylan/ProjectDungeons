@@ -297,7 +297,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 105379107}
-  m_LocalRotation: {x: 0.28978416, y: 0.0000000134480915, z: -0.000000004071749, w: 0.95709205}
+  m_LocalRotation: {x: 0.28978416, y: 0.000000018582233, z: -0.000000005626243, w: 0.95709205}
   m_LocalPosition: {x: 22.528446, y: 3.574, z: 9.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -776,7 +776,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 415856293}
-  m_LocalRotation: {x: 0.28978413, y: -0.000000013571589, z: 0.0000000041091472, w: 0.95709205}
+  m_LocalRotation: {x: 0.2897841, y: 0.000000018582234, z: -0.0000000056262475, w: 0.95709205}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -922,7 +922,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 569832400}
-  m_LocalRotation: {x: 0.28978413, y: 0.000000013448092, z: -0.0000000040717487, w: 0.9570921}
+  m_LocalRotation: {x: 0.28978413, y: 0.000000012737018, z: -0.0000000038564534, w: 0.95709205}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1004,7 +1004,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 4.7019774e-38, y: 2.7105054e-20, z: 2.3509887e-38,
+  m_BoundingSphereOverride: {x: 3.0092666e-36, y: 1.6940659e-21, z: 2.3509887e-38,
     w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
@@ -1271,8 +1271,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 937884688}
-  m_LocalRotation: {x: 0.28978413, y: 0.0000000064096164, z: -0.0000000019406743,
-    w: 0.9570921}
+  m_LocalRotation: {x: 0.28978413, y: 0.000000026788141, z: -0.000000008110796, w: 0.95709205}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -5879,7 +5878,7 @@ PrefabInstance:
     - target: {fileID: 3807898808060329869, guid: a5cdbded16c54814d9619e3ee209c848,
         type: 3}
       propertyPath: m_Name
-      value: ybot (1)
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5cdbded16c54814d9619e3ee209c848, type: 3}
