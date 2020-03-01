@@ -6,29 +6,31 @@ public class PlayerCharacter : MonoBehaviour
 {
     #region Player Variables
     //Character Info Variables
-    private string _characterName;
-    private float _currentExperience;
-    private float _experienceNeeded;
+    private string _characterName = null;
+    private float _currentExperience = 0;
+    private float _experienceNeeded = 0;
+    private PlayerClass _class = null;
 
     //Defensive Stat Variables
-    private float _armor;
-    private float _resist;
-    private float _currentHealth;
-    private float _maxHealth;
-    private float _perseverance;
+    private float _armor = 0;
+    private float _resist = 0;
+    private float _currentHealth = 0;
+    private float _maxHealth = 0;
+    private float _perseverance = 0;
 
     //Offensive Stat Variables
-    private float _power;
-    private float _criticalChance;
-    private float _haste;
-    private float _attackPotency;
+    private float _power = 0;
+    private float _criticalChance = 0;
+    private float _haste = 0;
+    private float _attackPotency = 0;
     #endregion
 
-    #region Player Properties
+    #region Player Getter Properties
     //Character Info
     public string CharacterName { get { return _characterName; } }
     public float CurrentExperience { get { return _currentExperience; } }
     public float ExperienceNeeded { get { return _experienceNeeded; } }
+    public PlayerClass Class { get { return _class; } }
 
     //Defensive Stats
     public float Armor { get { return _armor; } }
@@ -43,4 +45,9 @@ public class PlayerCharacter : MonoBehaviour
     public float Haste { get { return _haste; } }
     public float AttackPotency { get { return _attackPotency; } }
     #endregion
+
+    public PlayerCharacter()
+    {
+
+    }
 }
