@@ -9,7 +9,8 @@ public class PlayerCharacter : MonoBehaviour
     private string _characterName = null;
     private float _currentExperience = 0;
     private float _experienceNeeded = 0;
-    private PlayerClass _class = null;
+    private int _playerLevel = 1;
+    private BasePlayerClass _class = null;
 
     //Defensive Stat Variables
     private float _armor = 0;
@@ -25,29 +26,33 @@ public class PlayerCharacter : MonoBehaviour
     private float _attackPotency = 0;
     #endregion
 
-    #region Player Getter Properties
+    #region Player Properties
     //Character Info
-    public string CharacterName { get { return _characterName; } }
-    public float CurrentExperience { get { return _currentExperience; } }
-    public float ExperienceNeeded { get { return _experienceNeeded; } }
-    public PlayerClass Class { get { return _class; } }
+    public string CharacterName { get { return _characterName; } set { _characterName = value; } }
+    public float CurrentExperience { get { return _currentExperience; } set { _currentExperience = value; } }
+    public float ExperienceNeeded { get { return _experienceNeeded; } set { _experienceNeeded = value; } }
+    public int PlayerLevel { get { return _playerLevel; } set { _playerLevel = value; } }
+    public BasePlayerClass Class { get { return _class; } }
 
     //Defensive Stats
-    public float Armor { get { return _armor; } }
-    public float Resist { get { return _resist; } }
-    public float CurrentHealth { get { return _currentHealth; } }
-    public float MaxHealth { get { return _maxHealth; } }
-    public float Perseverance { get { return _perseverance; } }
+    public float Armor { get { return _armor; } set { _armor = value; } }
+    public float Resist { get { return _resist; } set { _resist = value; } }
+    public float CurrentHealth { get { return _currentHealth; } set { _currentHealth = value; } }
+    public float MaxHealth { get { return _maxHealth; } set { _maxHealth = value; } }
+    public float Perseverance { get { return _perseverance; } set { _perseverance = value; } }
 
     //Offensive Stats
-    public float Power { get { return _power; } }
-    public float CriticalChance { get { return _criticalChance; } }
-    public float Haste { get { return _haste; } }
-    public float AttackPotency { get { return _attackPotency; } }
+    public float Power { get { return _power; } set { _power = value; } }
+    public float CriticalChance { get { return _criticalChance; } set { _criticalChance = value; } }
+    public float Haste { get { return _haste; } set { _haste = value; } }
+    public float AttackPotency { get { return _attackPotency; } set { _attackPotency = value; } }
     #endregion
 
-    public PlayerCharacter()
+    public PlayerCharacter(string characterName, int playerLevel, float currentExperience, WarriorClass playerClass)
     {
-
+        CharacterName = characterName;
+        PlayerLevel = playerLevel;
+        CurrentExperience = currentExperience;
+        Armor = playerClass.Armor;
     }
 }

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f08c793cf6433ec4ebc9065c509b55b1, type: 3}
+  m_Name: WarriorBaseStats
+  m_EditorClassIdentifier: 
+  _armor: 20
+  _resist: 15
+  _maxHealth: 100
+  _perseverance: 10
+  _power: 20
+  _criticalChance: 5
+  _haste: 10
+  _attackPotency: 10
