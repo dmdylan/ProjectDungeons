@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class WarriorClass : BasePlayerClass
 {
-    public BaseStats warriorBaseStats;
+    BaseStats warriorBaseStats = Resources.Load("Assets/Scriptable Objects/WarriorBaseStats.asset") as BaseStats;
 
     public WarriorClass()
     {
-        Armor = warriorBaseStats.Armor;
         Class = "Warrior";
+        Armor = warriorBaseStats.Armor;
         Resist = warriorBaseStats.Resist;
         MaxHealth = warriorBaseStats.MaxHealth;
         Perseverance = warriorBaseStats.Perseverance;

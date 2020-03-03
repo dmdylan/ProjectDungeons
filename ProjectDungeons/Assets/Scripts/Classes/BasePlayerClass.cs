@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasePlayerClass : MonoBehaviour
+public class BasePlayerClass
 {
     public string Class { get; set; }
     public float Armor { get; set; }
