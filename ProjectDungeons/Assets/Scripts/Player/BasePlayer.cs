@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasePlayer : MonoBehaviour
+public class BasePlayer
 {
     #region Player Variables
     //Character Info Variables
     private string _characterName = null;
     private float _currentExperience = 0;
     private int _playerLevel = 1;
-    private BasePlayerClass _class = null;
+    private string _class = null;
 
     //Defensive Stat Variables
     private float _armor = 0;
@@ -30,7 +30,7 @@ public class BasePlayer : MonoBehaviour
     public string CharacterName { get { return _characterName; } set { _characterName = value; } }
     public float CurrentExperience { get { return _currentExperience; } set { _currentExperience = value; } }
     public int PlayerLevel { get { return _playerLevel; } set { _playerLevel = value; } }
-    public BasePlayerClass Class { get { return _class; } }
+    public string Class { get { return _class; } set { _class = value; } }
 
     //Defensive Stats
     public float Armor { get { return _armor; } set { _armor = value; } }
@@ -45,4 +45,20 @@ public class BasePlayer : MonoBehaviour
     public float Haste { get { return _haste; } set { _haste = value; } }
     public float AttackPotency { get { return _attackPotency; } set { _attackPotency = value; } }
     #endregion
+
+    public BasePlayer(BasePlayerClass characterClass)
+    {
+        PlayerLevel = 1;
+        CurrentExperience = 0;
+        Class = characterClass.Class;
+        Armor = characterClass.Armor; 
+        Resist = characterClass.Resist;
+        MaxHealth = characterClass.MaxHealth;
+        CurrentHealth = MaxHealth;
+        Perseverance = characterClass.Perseverance;
+        Power = characterClass.Power;
+        CriticalChance = characterClass.CriticalChance;
+        Haste = characterClass.Haste;
+        AttackPotency = characterClass.AttackPotency;
+    }
 }

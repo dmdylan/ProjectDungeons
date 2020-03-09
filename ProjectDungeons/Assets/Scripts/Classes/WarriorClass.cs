@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class WarriorClass : BasePlayerClass
 {
-    BaseStats warriorBaseStats = Resources.Load("Assets/Scriptable Objects/WarriorBaseStats.asset") as BaseStats;
+    //BaseStats warriorBaseStats = Resources.Load("Assets/Scriptable Objects/WarriorBaseStats.asset") as BaseStats;
 
     public WarriorClass()
     {
         Class = "Warrior";
-        Armor = warriorBaseStats.Armor;
-        Resist = warriorBaseStats.Resist;
-        MaxHealth = warriorBaseStats.MaxHealth;
-        Perseverance = warriorBaseStats.Perseverance;
-        Power = warriorBaseStats.Power;
-        CriticalChance = warriorBaseStats.CriticalChance;
-        Haste = warriorBaseStats.Haste;
-        AttackPotency = warriorBaseStats.AttackPotency;
+        Armor = 20;
+        Resist = 15;
+        MaxHealth = 100;
+        Perseverance = 10;
+        Power = 20;
+        CriticalChance = 5;
+        Haste = 10;
+        AttackPotency = 10;
     }
 }

@@ -10,6 +10,7 @@ public class TogglePressed : MonoBehaviour
     private void Start()
     {
         toggle = GetComponent<Toggle>();
+        toggle.isOn = false;
         toggle.onValueChanged.AddListener(OnToggleValueChanged);
     }
 
