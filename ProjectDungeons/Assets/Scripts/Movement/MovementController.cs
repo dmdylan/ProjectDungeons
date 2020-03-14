@@ -1,10 +1,11 @@
-﻿using System.Collections;
+﻿using Mirror;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(Animator))]
-public class MovementController : MonoBehaviour
+public class MovementController : NetworkBehaviour
 {
     [SerializeField] private float movementSpeed = 3f;
     [SerializeField] private float runSpeed = 6f;

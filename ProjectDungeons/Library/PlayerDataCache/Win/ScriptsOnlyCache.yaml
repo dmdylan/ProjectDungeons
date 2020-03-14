@@ -2,7 +2,6 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - MovementController
-    - PlayerMovement
     - ScreenCenter
     Cinemachine.dll:
     - Cinemachine.CinemachineBrain
@@ -13,6 +12,8 @@ ScriptsOnlyBuild:
     - Cinemachine.CinemachinePipeline
     - Cinemachine.CinemachineVirtualCamera
     - CinemachineCameraOffset
+    Mirror.Components.dll:
+    - Mirror.NetworkTransform
     Mirror.dll:
     - Mirror.NetworkIdentity
     - Mirror.NetworkManager
@@ -25,8 +26,6 @@ ScriptsOnlyBuild:
     Unity.ProBuilder.Editor.dll:
     - UnityEditor.ProBuilder.EditorToolbar
     - UnityEditor.ProBuilder.ProBuilderEditor
-    Unity.ProBuilder.dll:
-    - UnityEngine.ProBuilder.ProBuilderMesh
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     Unity.TextMeshPro.dll:
@@ -72,11 +71,7 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 49
       Script: {instanceID: 0}
-    - Class: 54
-      Script: {instanceID: 0}
     - Class: 64
-      Script: {instanceID: 0}
-    - Class: 65
       Script: {instanceID: 0}
     - Class: 74
       Script: {instanceID: 0}
@@ -109,8 +104,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11924}
     - Class: 114
-      Script: {instanceID: 11978}
-    - Class: 114
       Script: {instanceID: 12196}
     - Class: 114
       Script: {instanceID: 12434}
@@ -127,8 +120,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13074}
     - Class: 114
-      Script: {instanceID: 13670}
-    - Class: 114
       Script: {instanceID: 13710}
     - Class: 114
       Script: {instanceID: 13734}
@@ -143,16 +134,16 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 14544}
     - Class: 114
+      Script: {instanceID: 14594}
+    - Class: 114
       Script: {instanceID: 14880}
     - Class: 114
       Script: {instanceID: 14934}
     - Class: 114
-      Script: {instanceID: 25830}
+      Script: {instanceID: 18202}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
-      Script: {instanceID: 0}
-    - Class: 136
       Script: {instanceID: 0}
     - Class: 137
       Script: {instanceID: 0}
@@ -691,7 +682,7 @@ ScriptsOnlyBuild:
     className: PlayerInputEditor
   - hash:
       serializedVersion: 2
-      Hash: a8d460aff818fbff572f9d20158da595
+      Hash: 5d8dd8fc9afd227e920fdb5389713be3
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MovementController
