@@ -21,7 +21,7 @@ public class MovementController : NetworkBehaviour
 
     private static readonly int hashSpeedPercentage = Animator.StringToHash("SpeedPercentage");
 
-    private void Start()
+    public void Start()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -30,8 +30,10 @@ public class MovementController : NetworkBehaviour
         mainCameraTransform = Camera.main.transform;
     }
 
+    [Client]
     private void Update()
     {
+        if (!hasAuthority) { return; }
         Move();
     }
 
