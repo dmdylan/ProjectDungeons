@@ -23,6 +23,7 @@ public class MovementController : NetworkBehaviour
 
     public void Start()
     {
+        if (!hasAuthority) { return; }
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         controller = GetComponent<CharacterController>();
