@@ -1,8 +1,8 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - CreateLocalPlayer
     - MovementController
-    - ScreenCenter
     Cinemachine.dll:
     - Cinemachine.CinemachineBrain
     - Cinemachine.CinemachineCollider
@@ -98,49 +98,49 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11364}
     - Class: 114
-      Script: {instanceID: 11588}
+      Script: {instanceID: 11590}
     - Class: 114
-      Script: {instanceID: 11690}
+      Script: {instanceID: 11692}
     - Class: 114
-      Script: {instanceID: 11924}
+      Script: {instanceID: 11926}
     - Class: 114
-      Script: {instanceID: 12196}
+      Script: {instanceID: 12198}
     - Class: 114
-      Script: {instanceID: 12434}
+      Script: {instanceID: 12436}
     - Class: 114
-      Script: {instanceID: 12500}
+      Script: {instanceID: 12502}
     - Class: 114
-      Script: {instanceID: 12732}
+      Script: {instanceID: 12734}
     - Class: 114
-      Script: {instanceID: 12800}
+      Script: {instanceID: 12802}
     - Class: 114
-      Script: {instanceID: 12916}
+      Script: {instanceID: 12918}
     - Class: 114
-      Script: {instanceID: 12980}
+      Script: {instanceID: 13076}
     - Class: 114
-      Script: {instanceID: 13074}
+      Script: {instanceID: 13588}
     - Class: 114
-      Script: {instanceID: 13710}
+      Script: {instanceID: 13714}
     - Class: 114
-      Script: {instanceID: 13734}
+      Script: {instanceID: 13738}
     - Class: 114
-      Script: {instanceID: 13830}
+      Script: {instanceID: 13834}
     - Class: 114
-      Script: {instanceID: 13998}
+      Script: {instanceID: 14002}
     - Class: 114
-      Script: {instanceID: 14230}
+      Script: {instanceID: 14234}
     - Class: 114
-      Script: {instanceID: 14338}
+      Script: {instanceID: 14342}
     - Class: 114
-      Script: {instanceID: 14544}
+      Script: {instanceID: 14548}
     - Class: 114
-      Script: {instanceID: 14594}
+      Script: {instanceID: 14598}
     - Class: 114
-      Script: {instanceID: 14880}
+      Script: {instanceID: 14884}
     - Class: 114
-      Script: {instanceID: 14934}
+      Script: {instanceID: 14938}
     - Class: 114
-      Script: {instanceID: 18134}
+      Script: {instanceID: 22032}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -212,6 +212,12 @@ ScriptsOnlyBuild:
     assemblyName: Mirror.dll
     namespaceName: Mirror
     className: NetworkManagerHUD
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: AssignCameraToPlayer
   - hash:
       serializedVersion: 2
       Hash: 9c7c87712e298256d276eb96e02a57b1
@@ -682,7 +688,7 @@ ScriptsOnlyBuild:
     className: PlayerInputEditor
   - hash:
       serializedVersion: 2
-      Hash: 5d8dd8fc9afd227e920fdb5389713be3
+      Hash: 567238216dc488881afb8453ecf13dd6
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MovementController
@@ -926,6 +932,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.InputSystem.dll
     namespaceName: UnityEngine.InputSystem.Editor
     className: InputDeviceDebuggerWindow
+  - hash:
+      serializedVersion: 2
+      Hash: 6fd2bb55b3ee5edb6040a1c5bccd0e07
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CreateLocalPlayer
   - hash:
       serializedVersion: 2
       Hash: e6d75f1a9bc0c6f7085df0baa077e688

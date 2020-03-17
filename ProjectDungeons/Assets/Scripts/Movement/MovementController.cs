@@ -13,7 +13,7 @@ public class MovementController : NetworkBehaviour
 
     private CharacterController controller = null;
     private Animator animator = null;
-    private Transform mainCameraTransform = null;
+    [SerializeField]private Transform mainCameraTransform;
 
     private float velocityY = 0f;
     private float speedSmoothVelocity = 0f;
@@ -23,12 +23,12 @@ public class MovementController : NetworkBehaviour
 
     public void Start()
     {
-        if (!hasAuthority) { return; }
+        if (!isLocalPlayer) { return; }
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
-        mainCameraTransform = Camera.main.transform;
+        //mainCameraTransform = Camera.main.transform;
     }
 
     [Client]
