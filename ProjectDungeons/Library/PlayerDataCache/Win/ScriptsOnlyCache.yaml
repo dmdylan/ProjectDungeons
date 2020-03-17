@@ -140,7 +140,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 14938}
     - Class: 114
-      Script: {instanceID: 22032}
+      Script: {instanceID: 19420}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -934,7 +934,7 @@ ScriptsOnlyBuild:
     className: InputDeviceDebuggerWindow
   - hash:
       serializedVersion: 2
-      Hash: 6fd2bb55b3ee5edb6040a1c5bccd0e07
+      Hash: 0cd796416aa30671a261cb9a662c3adf
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CreateLocalPlayer

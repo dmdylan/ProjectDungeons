@@ -587,8 +587,7 @@ MonoBehaviour:
     type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 0
-  spawnPrefabs:
-  - {fileID: 2109959868968180161, guid: 57e10f8d523f8594fa6cde494564a9f5, type: 3}
+  spawnPrefabs: []
 --- !u!4 &398087706
 Transform:
   m_ObjectHideFlags: 0
@@ -743,8 +742,8 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.8522376e+28, y: 1.530572e+31, z: 1.9363069e+31,
-    w: 1.8605366e+34}
+  m_BoundingSphereOverride: {x: 1.816722e+31, y: 4.1223718e+30, z: 6.2035747e+22,
+    w: 4.861348e+30}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0

@@ -21,9 +21,11 @@ public class MovementController : NetworkBehaviour
 
     private static readonly int hashSpeedPercentage = Animator.StringToHash("SpeedPercentage");
 
-    public void Start()
+    public override void OnStartLocalPlayer()
     {
-        if (!isLocalPlayer) { return; }
+        if (!isLocalPlayer)
+            return;
+
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         controller = GetComponent<CharacterController>();
@@ -31,7 +33,6 @@ public class MovementController : NetworkBehaviour
         //mainCameraTransform = Camera.main.transform;
     }
 
-    [Client]
     private void Update()
     {
         if (!hasAuthority) { return; }

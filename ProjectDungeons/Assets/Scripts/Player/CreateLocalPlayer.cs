@@ -6,18 +6,25 @@ using Cinemachine;
 
 public class CreateLocalPlayer : NetworkBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private CinemachineFreeLook freeLookCam;
+    [SerializeField] private Camera playerCamera;
+    [SerializeField] private Transform player;
+    [SerializeField] private Transform target;
+    
+    public override void OnStartLocalPlayer()
     {
-        //if (!isLocalPlayer) { return; }
+        freeLookCam.gameObject.SetActive(false);
 
-        if (isLocalPlayer.Equals(true))
+        if (!isLocalPlayer)
         {
-           Camera.main.enabled = true;
+            return;
         }
         else
-            Camera.main.enabled = false;
- 
-        //cinemachineCamera = GetComponent<CinemachineFreeLook>();
+        {
+            playerCamera.gameObject.SetActive(true);
+            freeLookCam.gameObject.SetActive(true);
+            freeLookCam.Follow = player;
+            freeLookCam.LookAt = target;
+        }
     }
 }
