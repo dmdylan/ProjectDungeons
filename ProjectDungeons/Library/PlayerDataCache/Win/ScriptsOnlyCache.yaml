@@ -2,7 +2,7 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - CreateLocalPlayer
-    - MovementController
+    - PlayerMovementController
     Cinemachine.dll:
     - Cinemachine.CinemachineBrain
     - Cinemachine.CinemachineCollider
@@ -36,8 +36,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -110,8 +112,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12502}
     - Class: 114
-      Script: {instanceID: 12734}
-    - Class: 114
       Script: {instanceID: 12802}
     - Class: 114
       Script: {instanceID: 12918}
@@ -140,7 +140,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 14938}
     - Class: 114
-      Script: {instanceID: 19420}
+      Script: {instanceID: 19868}
+    - Class: 114
+      Script: {instanceID: 26744}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -688,7 +690,7 @@ ScriptsOnlyBuild:
     className: PlayerInputEditor
   - hash:
       serializedVersion: 2
-      Hash: 567238216dc488881afb8453ecf13dd6
+      Hash: 7c43081297f50e8666f51ef4eb34534b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MovementController
@@ -1478,7 +1480,13 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: b54d3ed551f3339e02e15ce05b9a502f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PlayerMovementController
   platform: 5
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: Z:/Unity Projects/ProjectDungeons.exe
+  playerPath: Z:/Unity Projects/ProjectDungeonsBuild/ProjectDungeons.exe

@@ -6,10 +6,10 @@ using Cinemachine;
 
 public class CreateLocalPlayer : NetworkBehaviour
 {
-    [SerializeField] private CinemachineFreeLook freeLookCam;
-    [SerializeField] private Camera playerCamera;
-    [SerializeField] private Transform player;
-    [SerializeField] private Transform target;
+    [SerializeField] private CinemachineFreeLook freeLookCam = null;
+    [SerializeField] private Camera playerCamera = null;
+    [SerializeField] private Transform player = null;
+    [SerializeField] private Transform target = null;
     
     public override void OnStartLocalPlayer()
     {

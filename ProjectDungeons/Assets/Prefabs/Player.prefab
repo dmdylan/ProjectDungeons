@@ -866,7 +866,7 @@ GameObject:
   - component: {fileID: 46515}
   - component: {fileID: -2957979890368589010}
   - component: {fileID: 892617349209047515}
-  - component: {fileID: -735656804487704351}
+  - component: {fileID: 7299394204961753831}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -983,7 +983,7 @@ MonoBehaviour:
   playerCamera: {fileID: 4585087446853552697}
   player: {fileID: 180995087030242718}
   target: {fileID: 446398550}
---- !u!114 &-735656804487704351
+--- !u!114 &7299394204961753831
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -992,15 +992,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 3807898808060329869}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00af52363e0addb42afd7769f8979f7d, type: 3}
+  m_Script: {fileID: 11500000, guid: aa428d7bb459ce44b995df9681d50379, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  movementSpeed: 5
+  walkSpeed: 5
   runSpeed: 10
+  gravity: -12
+  jumpHeight: 1
+  airControlPercent: 0.5
+  turnSmoothTime: 0
   speedSmoothTime: 0.1
-  mainCameraTransform: {fileID: 4585087446853552698}
+  cameraT: {fileID: 4585087446853552698}
 --- !u!1 &3810583004905507816
 GameObject:
   m_ObjectHideFlags: 0
