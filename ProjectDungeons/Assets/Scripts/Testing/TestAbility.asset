@@ -19,4 +19,6 @@ MonoBehaviour:
   abilityScalingValue: 0
   levelRequirement: 1
   abilityDamageType: 1
+  abilityEffectType: 0
+  effectDuration: 0
   icon: {fileID: 0}
